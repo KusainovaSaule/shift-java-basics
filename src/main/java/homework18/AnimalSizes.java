@@ -1,4 +1,4 @@
-package homework18;
+package main.java.homework18;
 
 public class AnimalSizes {
     public static void main(String[] args) {
