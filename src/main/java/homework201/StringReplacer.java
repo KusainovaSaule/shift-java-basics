@@ -12,6 +12,12 @@ public class StringReplacer {
         System.out.print("Введите символ (кроме пробела), все вхождения которого нужно заменить на пробел: ");
         String searchSymbol = scanner.nextLine();
 
+        if (!inputString.matches("[a-zA-Zа-яА-Я .,?!:;]*")) {
+            System.out.println("Ошибка! Строка содержит недопустимые символы");
+            scanner.close();
+            return;
+        }
+
         if (inputString.isEmpty() || inputString.length() == 1) {
             System.out.print("Ошибка! Строка нулевой или единичной длины");
             scanner.close();
@@ -24,18 +30,14 @@ public class StringReplacer {
             return;
         }
 
-        String originalInputString = inputString;
+        String result = fixSpaces(inputString);
+        result = result.replace(searchSymbol, " ");
+        result = fixSpaces(result);
 
-        String fixedString = fixSpaces(inputString);
-
-        String replacedString = fixedString.replace(searchSymbol, " ");
-
-        String result = fixSpaces(replacedString);
-
-        System.out.println("Исходная строка: " + originalInputString);
+        System.out.println("Исходная строка: " + inputString);
         System.out.println("Результат: " + result);
 
-        if (result.equals(originalInputString)) {
+        if (result.equals(inputString)) {
             System.out.println("Строка не изменилась после преобразований");
         }
 
@@ -43,25 +45,6 @@ public class StringReplacer {
     }
 
     public static String fixSpaces(String input) {
-        StringBuilder result  = new StringBuilder();
-
-        boolean lastWasSpace = false;
-
-        for (int i = 0; i < input.length(); i++) {
-            char x = input.charAt(i);
-
-            if (x == ' ') {
-                if (!lastWasSpace) {
-                    result.append(x);
-                    lastWasSpace = true;
-                }
-            }
-            else {
-                result.append(x);
-                lastWasSpace = false;
-            }
-        }
-
-        return result.toString();
+        return input.replaceAll("\\s+", " ");
     }
 }

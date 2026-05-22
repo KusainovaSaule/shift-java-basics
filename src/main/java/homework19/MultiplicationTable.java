@@ -59,28 +59,28 @@ public class MultiplicationTable {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                int product = headers[i] * headers[j];
-                int width = getCellWidth(product);
+                int multiplication = headers[i] * headers[j];
+                int width = getCellWidth(multiplication);
                 if (width > maxWidth) {
                     maxWidth = width;
                 }
             }
         }
 
-        maxWidth = Math.max(maxWidth, 2);
+        maxWidth += 2;
 
-        System.out.printf("%" + (maxWidth + 1) + "s", "");
+        System.out.printf("%" + maxWidth + "s", "");
         for (int j = 0; j < n; j++) {
-            System.out.printf("%" + (maxWidth + 2) + "d", headers[j]);
+            System.out.printf("%" + maxWidth + "d", headers[j]);
         }
         System.out.println();
 
         for (int i = 0; i < n; i++) {
-            System.out.printf("%" + (maxWidth + 1) + "d", headers[i]);
+            System.out.printf("%" + maxWidth + "d", headers[i]);
 
             for (int j = 0; j < n; j++) {
-                int product = headers[i] * headers[j];
-                System.out.printf("%" + (maxWidth + 2) + "d", product);
+                int multiplication = headers[i] * headers[j];
+                System.out.printf("%" + maxWidth + "d", multiplication);
             }
             System.out.println();
         }
